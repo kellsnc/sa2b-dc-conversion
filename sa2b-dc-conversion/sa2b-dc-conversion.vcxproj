@@ -72,7 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-	<OutDir>$(SolutionDir)bin</OutDir>
+    <OutDir>$(SolutionDir)bin</OutDir>
     <IntDir>bin</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -80,7 +80,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-	<OutDir>$(SolutionDir)bin</OutDir>
+    <OutDir>$(SolutionDir)bin</OutDir>
     <IntDir>bin</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -94,7 +94,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;SA2BDCCONVERSION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-	  <AdditionalIncludeDirectories>$(ProjectDir)..\sa2-mod-loader\libmodutils;$(ProjectDir)..\sa2-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sa2-mod-loader\SA2ModLoader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\sa2-mod-loader\libmodutils;$(ProjectDir)..\sa2-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sa2-mod-loader\SA2ModLoader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,7 +125,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;SA2BDCCONVERSION_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-	  <AdditionalIncludeDirectories>$(ProjectDir)..\sa2-mod-loader\libmodutils;$(ProjectDir)..\sa2-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sa2-mod-loader\SA2ModLoader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\sa2-mod-loader\libmodutils;$(ProjectDir)..\sa2-mod-loader\mod-loader-common\ModLoaderCommon;$(ProjectDir)..\sa2-mod-loader\SA2ModLoader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,6 +157,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\sa2-mod-loader\libmodutils\LandTableInfo.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="sa2b-dc-conversion.cpp" />
     <ClCompile Include="stdafx.cpp">
