@@ -8,4 +8,4 @@
 #include <string>
 
 #include <SA2ModLoader.h>
-#include "LandTableInfo.h"
+#include <LandTableInfo.h>
