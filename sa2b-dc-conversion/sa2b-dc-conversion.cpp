@@ -11,11 +11,20 @@ void LandManagerHook(int a1, LandTable *a2)
 
 //Replace the landtable and its texture file
 void ReplaceLevelFiles(HMODULE* hmodule, const char *path, char id) {
-	std::string str = "objLandTable00" + std::to_string(id);
+	std::string id_string;
+	
+	if (id < 10) {
+		id_string += "0";
+	}
+	
+	id_string += std::to_string(id);
+
+	std::string str = "objLandTable00" + id_string;
+
 	LandTable *land = (LandTable *)GetProcAddress(*hmodule, str.c_str());
 	oldtexlist = land->TextureList;
 
-	str = std::string(path) + "\\gd_PC\\stg" + std::to_string(id) + "_dc.sa2lvl";
+	str = std::string(path) + "\\gd_PC\\stg" + id_string + "_dc.sa2lvl";
 	*land = *(new LandTableInfo(str.c_str()))->getlandtable();
 
 	str = "landtx" + std::to_string(id) + "_dc";
@@ -24,11 +33,6 @@ void ReplaceLevelFiles(HMODULE* hmodule, const char *path, char id) {
 
 	land->TextureName = cstr;
 	land->TextureList = oldtexlist;
-	
-	for (int i = 0; i < land->ChunkModelCount; ++i) {
-		land->COLList[i].field_18 = 0;
-		land->COLList->Radius *= 100;
-	}
 }
 
 extern "C"
@@ -43,9 +47,16 @@ extern "C"
 		}
 
 		HMODULE hmodule = GetModuleHandle(__TEXT("Data_DLL_orig"));
-		ReplaceLevelFiles(&hmodule, path, LevelIDs_CityEscape);
 
-		//Dreamcast landtable fixes
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_GreenForest);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_MetalHarbor);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_CityEscape);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_CrazyGadget);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_PyramidCave);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_FinalRush);
+		ReplaceLevelFiles(&hmodule, path, LevelIDs_GreenHill);
+
+		// Dreamcast landtable fixes
 		WriteCall((void*)0x5DCDF7, LandManagerHook);
 		WriteData((char*)0x5DD4F0, (char)0xC3);
 		WriteData<2>((void*)0x47C2BC, 0x90u);
