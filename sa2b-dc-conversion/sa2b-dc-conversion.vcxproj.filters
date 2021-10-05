@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\stg13_cityescape">
+      <UniqueIdentifier>{340590aa-a7fb-4a1c-8aba-6b8052daa532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\stg13_cityescape">
+      <UniqueIdentifier>{dbf9afaa-dd58-444c-904c-2874a0939029}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -21,15 +27,30 @@
     <ClInclude Include="targetver.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="stg13_cityescape\stg13_cityescape.h">
+      <Filter>Fichiers d%27en-tête\stg13_cityescape</Filter>
+    </ClInclude>
+    <ClInclude Include="levels.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="mod.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="sa2b-dc-conversion.cpp">
+    <ClCompile Include="mod.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stg13_cityescape\stg13_cityescape.cpp">
+      <Filter>Fichiers sources\stg13_cityescape</Filter>
+    </ClCompile>
+    <ClCompile Include="levels.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
