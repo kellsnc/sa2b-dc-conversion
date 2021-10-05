@@ -1,9 +1,12 @@
 #include "stdafx.h"
+#include <SA2ModLoader.h>
+#include <LandTableInfo.h>
+#include <Trampoline.h>
 #include "..\common.h"
 #include "..\levels.h"
 #include "stg13_cityescape.h"
 
-ColorMap CityEscapeColorMap[]
+static ColorMap CityEscapeColorMap[]
 {
 	{ 0xFF000000, 0xFFFFFFFF },
 	{ 0xFFFFFF00, 0x18432	 },
@@ -20,11 +23,10 @@ ColorMap CityEscapeColorMap[]
 	{ 0xFF00007D, 0x2180	 }
 };
 
-NJS_VECTOR CityEscape_MapOffset = { -3000.0f, 0.0f, 16640.0f };
-NJS_VECTOR CityEscape_MapUnit = { 33.14917f, 0.0f, 33.203125 };
+static NJS_VECTOR CityEscape_MapOffset = { -3000.0f, 0.0f, 16640.0f };
+static NJS_VECTOR CityEscape_MapUnit = { 33.14917f, 0.0f, 33.203125 };
 
-NJS_TEXNAME LANDTX13_DC_TEXNAMES[]
-{
+static NJS_TEXNAME LANDTX13_DC_TEXNAMES[] {
 	{ (void*)"miu128_ce005", 0, 0 },
 	{ (void*)"miu256_ce001", 0, 0 },
 	{ (void*)"miu64_ce001", 0, 0 },
@@ -151,10 +153,34 @@ NJS_TEXNAME LANDTX13_DC_TEXNAMES[]
 	{ (void*)"miu32_ce003", 0, 0 },
 };
 
-NJS_TEXLIST LANDTX13_DC_TEXLIST = { arrayptrandlength(LANDTX13_DC_TEXNAMES) };
+static NJS_TEXLIST LANDTX13_DC_TEXLIST = { arrayptrandlength(LANDTX13_DC_TEXNAMES) };
+
+static Trampoline* CityEscape_Init_t;
+static Trampoline* CityEscape_Free_t;
+
+static LandTableInfo* CityEscapeLandInfo;
+
+static void __cdecl CityEscape_Init_r()
+{
+	LoadLandTableFile(&CityEscapeLandInfo, "stg13_dc");
+	SetLandTableTexInfo(CityEscapeLandInfo, &LANDTX13_DC_TEXLIST, "LANDTX13_DC");
+	DataDLL_Set<LandTable>("objLandTable0013", CityEscapeLandInfo->getlandtable());
+
+	TRAMPOLINE(CityEscape_Init)();
+}
+
+static void __cdecl CityEscape_Free_r()
+{
+	FreeLandTableFile(&CityEscapeLandInfo);
+
+	TRAMPOLINE(CityEscape_Free)();
+}
 
 void STG13_INIT(const HelperFunctions& helperFunctions)
 {
+	CityEscape_Init_t = new Trampoline(0x5DCD50, 0x5DCD56, CityEscape_Init_r);
+	CityEscape_Free_t = new Trampoline(0x5DD340, 0x5DD346, CityEscape_Free_r);
+
 	// Blockbit stuff
 	WriteData((ColorMap**)0x5DCE24, CityEscapeColorMap);
 	WriteData((NJS_VECTOR*)0x10DC800, CityEscape_MapOffset);
@@ -162,8 +188,7 @@ void STG13_INIT(const HelperFunctions& helperFunctions)
 
 	// LandTable stuff
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
-	LoadAndReplaceLandTable(13, &LANDTX13_DC_TEXLIST);
-
+	
 	// Texture stuff
 	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
 }

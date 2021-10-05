@@ -1,5 +1,7 @@
 #pragma once
 
+#define TRAMPOLINE(name) ((decltype(name##_r)*)name##_t->Target())
+
 template <typename T>
 T* DataDLL_Get(const char* name)
 {

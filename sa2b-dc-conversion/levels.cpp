@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include <SA2ModLoader.h>
+#include <LandTableInfo.h>
 #include <string>
 #include "mod.h"
 #include "levels.h"
@@ -9,53 +11,41 @@ void LoadChunkLandManager(int a1, LandTable* land)
 	LoadLandManager(land);
 }
 
-//Replace the landtable and its texture file
-LandTableInfo* LoadAndReplaceLandTable(char id, NJS_TEXLIST* texlist)
+void LoadLandTableFile(LandTableInfo** info, const char* name)
 {
-	std::string idstr;
+	std::string fullPath = "resource\\gd_PC\\" + (std::string)name + ".sa2lvl";
 
-	if (id < 10)
+	LandTableInfo* lnd = new LandTableInfo(gHelperFunctions->GetReplaceablePath(fullPath.c_str()));
+
+	if (lnd->getlandtable() == nullptr)
 	{
-		idstr += "0";
-	}
-
-	idstr += std::to_string(id);
-
-	std::string str = "objLandTable00" + idstr;
-
-	auto exportname = str.c_str();
-	auto exportptr = reinterpret_cast<LandTable*>(GetProcAddress(**datadllhandle, exportname));
-
-	if (exportptr)
-	{
-		std::string path = "resource\\gd_PC\\STG" + idstr + "_DC.sa2lvl";
-		auto landname = path.c_str();
-		auto landinfo = new LandTableInfo(gHelperFunctions->GetReplaceablePath(landname));
-
-		auto land = landinfo->getlandtable();
-
-		if (land)
-		{
-			auto oldtexlist = exportptr->TextureList;
-
-			std::string texname = "LANDTX" + idstr + "_DC";
-			char* cstr = new char[texname.length() + 1];
-			strcpy_s(cstr, 12, texname.c_str());
-
-			land->TextureName = cstr;
-			land->TextureList = texlist;
-
-			*exportptr = *land;
-		}
-		else
-		{
-			PrintDebug("[DC] Cannot find DC landtable at \"\s\"", landname);
-		}
+		PrintDebug("[SA2] Error: failed to load LandTable \"%s\".\n", name);
+		delete lnd;
+		*info = nullptr;
 	}
 	else
 	{
-		PrintDebug("[DC] Cannot find dll export \"\s\"", exportname);
+		PrintDebug("[SA2] Successfully loaded LandTable \"%s\".\n", name);
+		*info = lnd;
 	}
+}
 
-	return nullptr;
+void FreeLandTableFile(LandTableInfo** info)
+{
+	if (*info)
+	{
+		delete* info;
+		info = nullptr;
+	}
+}
+
+void SetLandTableTexInfo(LandTableInfo* info, NJS_TEXLIST* texlist, const char* name)
+{
+	auto land = info->getlandtable();
+
+	if (land)
+	{
+		land->TextureList = texlist;
+		land->TextureName = name;
+	}
 }

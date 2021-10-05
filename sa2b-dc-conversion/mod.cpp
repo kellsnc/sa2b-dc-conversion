@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include <SA2ModLoader.h>
 #include "mod.h"
 
 #include "stg13_cityescape/stg13_cityescape.h"

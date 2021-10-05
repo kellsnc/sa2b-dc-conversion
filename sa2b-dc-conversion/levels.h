@@ -7,4 +7,6 @@ struct ColorMap
 };
 
 void LoadChunkLandManager(int a1, LandTable* a2);
-LandTableInfo* LoadAndReplaceLandTable(char id, NJS_TEXLIST* texlist);
+void LoadLandTableFile(LandTableInfo** info, const char* name);
+void FreeLandTableFile(LandTableInfo** info);
+void SetLandTableTexInfo(LandTableInfo* info, NJS_TEXLIST* texlist, const char* name);
