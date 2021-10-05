@@ -10,4 +10,5 @@
 #include <SA2ModLoader.h>
 #include <LandTableInfo.h>
 
+#include "common.h"
 #include "levels.h"

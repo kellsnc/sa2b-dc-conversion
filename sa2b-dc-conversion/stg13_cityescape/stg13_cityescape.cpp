@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "..\common.h"
 #include "..\levels.h"
 #include "stg13_cityescape.h"
 
@@ -10,6 +11,7 @@ ColorMap CityEscapeColorMap[]
 	{ 0xFFFF00FF, 0xC0104	 },
 	{ 0xFF00FFFF, 0x830C	 },
 	{ 0xFFFF7D00, 0x46008	 },
+	{ 0xFF0000FF, 0x218		 },
 	{ 0xFF007D00, 0x60CD0	 },
 	{ 0xFF7D007D, 0x10860	 },
 	{ 0xFF7D0000, 0x3040	 },
@@ -153,11 +155,15 @@ NJS_TEXLIST LANDTX13_DC_TEXLIST = { arrayptrandlength(LANDTX13_DC_TEXNAMES) };
 
 void STG13_INIT(const HelperFunctions& helperFunctions)
 {
+	// Blockbit stuff
 	WriteData((ColorMap**)0x5DCE24, CityEscapeColorMap);
 	WriteData((NJS_VECTOR*)0x10DC800, CityEscape_MapOffset);
 	WriteData((NJS_VECTOR*)0x10DC80C, CityEscape_MapUnit);
 
+	// LandTable stuff
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
-
 	LoadAndReplaceLandTable(13, &LANDTX13_DC_TEXLIST);
+
+	// Texture stuff
+	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
 }

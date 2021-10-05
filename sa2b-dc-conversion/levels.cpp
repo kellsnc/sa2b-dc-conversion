@@ -42,14 +42,6 @@ LandTableInfo* LoadAndReplaceLandTable(char id, NJS_TEXLIST* texlist)
 			char* cstr = new char[texname.length() + 1];
 			strcpy_s(cstr, 12, texname.c_str());
 
-			std::string texexportname = "texlist_landtx" + idstr;
-			auto texexportptr = reinterpret_cast<NJS_TEXLIST*>(GetProcAddress(**datadllhandle, texexportname.c_str()));
-
-			if (texexportptr)
-			{
-				*texexportptr = *texlist;
-			}
-			
 			land->TextureName = cstr;
 			land->TextureList = texlist;
 
