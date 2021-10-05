@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include <SA2ModLoader.h>
+#include <IniFile.hpp>
 #include "mod.h"
 
 #include "stg13_cityescape/stg13_cityescape.h"
@@ -22,7 +23,14 @@ extern "C"
 		gModPath = static_cast<std::string>(path);
 		gHelperFunctions = &helperFunctions;
 
-		STG13_INIT(helperFunctions);
+		const auto config = new IniFile(std::string(path) + "\\config.ini");
+
+		if (config->getBool("Levels", "CityEscape", true) == true)
+		{
+			STG13_INIT(helperFunctions);
+		}
+		
+		delete config;
 	}
 
 	__declspec(dllexport) ModInfo SA2ModInfo = { ModLoaderVer };

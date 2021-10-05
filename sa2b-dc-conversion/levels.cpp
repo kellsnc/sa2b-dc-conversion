@@ -19,13 +19,13 @@ void LoadLandTableFile(LandTableInfo** info, const char* name)
 
 	if (lnd->getlandtable() == nullptr)
 	{
-		PrintDebug("[SA2] Error: failed to load LandTable \"%s\".\n", name);
+		PrintDebug("[DC] Error: failed to load LandTable \"%s\".\n", name);
 		delete lnd;
 		*info = nullptr;
 	}
 	else
 	{
-		PrintDebug("[SA2] Successfully loaded LandTable \"%s\".\n", name);
+		PrintDebug("[DC] Successfully loaded LandTable \"%s\".\n", name);
 		*info = lnd;
 	}
 }
