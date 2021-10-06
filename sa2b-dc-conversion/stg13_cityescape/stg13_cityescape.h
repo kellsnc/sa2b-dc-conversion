@@ -1,3 +1,3 @@
 #pragma once
 
-void STG13_INIT(const HelperFunctions& helperFunctions);
+void STG13_INIT();

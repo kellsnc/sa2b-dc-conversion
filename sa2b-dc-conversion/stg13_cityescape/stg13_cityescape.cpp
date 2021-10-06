@@ -150,7 +150,7 @@ static NJS_TEXNAME LANDTX13_DC_TEXNAMES[] {
 	{ (void*)"t_win128_4", 0, 0 },
 	{ (void*)"t_win128_5", 0, 0 },
 	{ (void*)"t_win128_9", 0, 0 },
-	{ (void*)"miu32_ce003", 0, 0 },
+	{ (void*)"miu32_ce003", 0, 0 }
 };
 
 static NJS_TEXLIST LANDTX13_DC_TEXLIST = { arrayptrandlength(LANDTX13_DC_TEXNAMES) };
@@ -176,19 +176,16 @@ static void __cdecl CityEscape_Free_r()
 	TRAMPOLINE(CityEscape_Free)();
 }
 
-void STG13_INIT(const HelperFunctions& helperFunctions)
+void STG13_INIT()
 {
 	CityEscape_Init_t = new Trampoline(0x5DCD50, 0x5DCD56, CityEscape_Init_r);
 	CityEscape_Free_t = new Trampoline(0x5DD340, 0x5DD346, CityEscape_Free_r);
 
-	// Blockbit stuff
 	WriteData((ColorMap**)0x5DCE24, CityEscapeColorMap);
 	WriteData((NJS_VECTOR*)0x10DC800, CityEscape_MapOffset);
 	WriteData((NJS_VECTOR*)0x10DC80C, CityEscape_MapUnit);
 
-	// LandTable stuff
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
 	
-	// Texture stuff
 	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
 }

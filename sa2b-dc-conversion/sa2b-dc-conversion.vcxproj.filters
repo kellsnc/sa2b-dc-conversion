@@ -19,6 +19,12 @@
     <Filter Include="Fichiers d%27en-tête\stg13_cityescape">
       <UniqueIdentifier>{dbf9afaa-dd58-444c-904c-2874a0939029}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\stg10_metalharbor">
+      <UniqueIdentifier>{1b23cf57-bf41-4c66-a187-5d82244a962c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\stg10_metalharbor">
+      <UniqueIdentifier>{5dc1c4f8-b024-4198-bd19-23a680857631}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -39,6 +45,9 @@
     <ClInclude Include="common.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="stg10_metalharbor\stg10_metalharbor.h">
+      <Filter>Fichiers d%27en-tête\stg10_metalharbor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -55,6 +64,9 @@
     </ClCompile>
     <ClCompile Include="levels.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="stg10_metalharbor\stg10_metalharbor.cpp">
+      <Filter>Fichiers sources\stg10_metalharbor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
