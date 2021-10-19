@@ -25,6 +25,12 @@
     <Filter Include="Fichiers sources\stg10_metalharbor">
       <UniqueIdentifier>{5dc1c4f8-b024-4198-bd19-23a680857631}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\stg03_greenforest">
+      <UniqueIdentifier>{fb15bbb1-d211-4919-8d97-338e8a411336}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\stg03_greenforest">
+      <UniqueIdentifier>{e469880b-6208-4e0f-9359-9945772ec712}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -48,6 +54,9 @@
     <ClInclude Include="stg10_metalharbor\stg10_metalharbor.h">
       <Filter>Fichiers d%27en-tête\stg10_metalharbor</Filter>
     </ClInclude>
+    <ClInclude Include="stg03_greenforest\stg03_greenforest.h">
+      <Filter>Fichiers d%27en-tête\stg03_greenforest</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -67,6 +76,9 @@
     </ClCompile>
     <ClCompile Include="stg10_metalharbor\stg10_metalharbor.cpp">
       <Filter>Fichiers sources\stg10_metalharbor</Filter>
+    </ClCompile>
+    <ClCompile Include="stg03_greenforest\stg03_greenforest.cpp">
+      <Filter>Fichiers sources\stg03_greenforest</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

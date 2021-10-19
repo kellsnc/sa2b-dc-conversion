@@ -92,6 +92,7 @@
     <ClInclude Include="levels.h" />
     <ClInclude Include="mod.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="stg03_greenforest\stg03_greenforest.h" />
     <ClInclude Include="stg10_metalharbor\stg10_metalharbor.h" />
     <ClInclude Include="stg13_cityescape\stg13_cityescape.h" />
     <ClInclude Include="targetver.h" />
@@ -104,6 +105,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="stg03_greenforest\stg03_greenforest.cpp" />
     <ClCompile Include="stg10_metalharbor\stg10_metalharbor.cpp" />
     <ClCompile Include="stg13_cityescape\stg13_cityescape.cpp" />
   </ItemGroup>
