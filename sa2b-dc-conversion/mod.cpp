@@ -3,8 +3,7 @@
 #include <IniFile.hpp>
 #include "mod.h"
 
-#include "stg10_metalharbor/stg10_metalharbor.h"
-#include "stg13_cityescape/stg13_cityescape.h"
+#include "levels.h"
 
 std::string gModPath;
 const HelperFunctions* gHelperFunctions;
@@ -26,16 +25,8 @@ extern "C"
 
 		const auto config = new IniFile(std::string(path) + "\\config.ini");
 
-		if (config->getBool("Levels", "MetalHarbor", true) == true)
-		{
-			STG10_INIT();
-		}
-
-		if (config->getBool("Levels", "CityEscape", true) == true)
-		{
-			STG13_INIT();
-		}
-
+		Levels_Init(config);
+		
 		delete config;
 	}
 

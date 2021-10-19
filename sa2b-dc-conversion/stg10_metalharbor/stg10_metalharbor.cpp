@@ -27,7 +27,7 @@ static NJS_VECTOR MetalHarbor_MapOffset = { -3000.0f, 0.0f, 16640.0f };
 static NJS_VECTOR MetalHarbor_MapUnit = { 33.14917f, 0.0f, 33.203125 };
 
 static NJS_TEXNAME LANDTX10_DC_TEXNAMES[] {
-{ (void*)"pr128_12", 0, 0 },
+	{ (void*)"pr128_12", 0, 0 },
 	{ (void*)"pr128_14", 0, 0 },
 	{ (void*)"pr128_15", 0, 0 },
 	{ (void*)"pr128_16", 0, 0 },
