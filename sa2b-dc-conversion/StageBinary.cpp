@@ -18,7 +18,7 @@ StageBinary::~StageBinary()
 {
 	if (filedata)
 	{
-		//FreeMemory(filedata, __FILE__, __LINE__)
+		FreeMemory(filedata, __FILE__, __LINE__);
 	}
 }
 

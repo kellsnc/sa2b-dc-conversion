@@ -18,3 +18,15 @@ void DataDLL_Set(const char* name, T* data)
 		*addr = *data;
 	}
 }
+
+static const void* const FreeMemoryPtr = (void*)0x77DF80;
+static inline void FreeMemory(void* pMemory, const char* file, int line)
+{
+	__asm
+	{
+		mov ecx, [line]
+		mov edx, [file]
+		mov eax, [pMemory]
+		call FreeMemoryPtr
+	}
+}
