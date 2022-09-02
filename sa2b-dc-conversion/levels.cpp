@@ -56,9 +56,6 @@ void SetLandTableTexInfo(LandTableInfo* info, NJS_TEXLIST* texlist, const char* 
 
 void Levels_Init(const IniFile* config)
 {
-	// Patch alpha models in landtables being skipped for chunk models
-	WriteData<2>((void*)0x47C2BC, 0x90u);
-
 	if (config->getBool("Levels", "MetalHarbor", true) == true)
 	{
 		STG10_INIT();
