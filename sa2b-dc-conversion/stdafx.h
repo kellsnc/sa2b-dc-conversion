@@ -7,10 +7,10 @@
 
 #include <string>
 
-#include <SA2ModLoader.h>
-#include <LandTableInfo.h>
-#include <Trampoline.h>
-#include <IniFile.hpp>
+#include "SA2ModLoader.h"
+#include "Trampoline.h"
+#include "IniFile.hpp"
+#include "StageBinary.h"
 
 #include "common.h"
 #include "levels.h"

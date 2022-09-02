@@ -1,13 +1,12 @@
 #include "stdafx.h"
-#include <SA2ModLoader.h>
-#include <LandTableInfo.h>
-#include <Trampoline.h>
-#include "..\common.h"
-#include "..\levels.h"
+#include "SA2ModLoader.h"
+#include "StageBinary.h"
+#include "Trampoline.h"
+#include "common.h"
+#include "levels.h"
 #include "stg13_cityescape.h"
 
-static ColorMap CityEscapeColorMap[]
-{
+static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
 	{ 0xFFFFFF00, 0x18432	 },
 	{ 0xFFFF0000, 0x3D826	 },
@@ -158,20 +157,24 @@ static NJS_TEXLIST LANDTX13_DC_TEXLIST = { arrayptrandlength(LANDTX13_DC_TEXNAME
 static Trampoline* CityEscape_Init_t;
 static Trampoline* CityEscape_Free_t;
 
-static LandTableInfo* CityEscapeLandInfo;
+static StageBinary* CityEscapeStageFile;
 
 static void __cdecl CityEscape_Init_r()
 {
-	LoadLandTableFile(&CityEscapeLandInfo, "stg13_dc");
-	SetLandTableTexInfo(CityEscapeLandInfo, &LANDTX13_DC_TEXLIST, "LANDTX13_DC");
-	DataDLL_Set<LandTable>("objLandTable0013", CityEscapeLandInfo->getlandtable());
+	CityEscapeStageFile = new StageBinary("STG13.PRS", 0x8C500000);
+
+	auto land = CityEscapeStageFile->GetLandTable(0xAC774);
+	land->TextureList = &LANDTX13_DC_TEXLIST;
+
+	DataDLL_Set<LandTable>("objLandTable0013", land);
 
 	TRAMPOLINE(CityEscape_Init)();
 }
 
 static void __cdecl CityEscape_Free_r()
 {
-	FreeLandTableFile(&CityEscapeLandInfo);
+	delete CityEscapeStageFile;
+	CityEscapeStageFile = nullptr;
 
 	TRAMPOLINE(CityEscape_Free)();
 }

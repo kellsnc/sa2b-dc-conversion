@@ -57,6 +57,9 @@
     <ClInclude Include="stg03_greenforest\stg03_greenforest.h">
       <Filter>Fichiers d%27en-tête\stg03_greenforest</Filter>
     </ClInclude>
+    <ClInclude Include="StageBinary.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="stg03_greenforest\stg03_greenforest.cpp">
       <Filter>Fichiers sources\stg03_greenforest</Filter>
+    </ClCompile>
+    <ClCompile Include="StageBinary.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

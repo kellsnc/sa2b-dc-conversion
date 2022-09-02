@@ -1,30 +1,10 @@
 #include "stdafx.h"
-#include <SA2ModLoader.h>
-#include <LandTableInfo.h>
-#include <Trampoline.h>
-#include "..\common.h"
-#include "..\levels.h"
+#include "SA2ModLoader.h"
+#include "StageBinary.h"
+#include "Trampoline.h"
+#include "common.h"
+#include "levels.h"
 #include "stg10_metalharbor.h"
-
-static ColorMap MetalHarborColorMap[]
-{
-	{ 0xFF000000, 0xFFFFFFFF },
-	{ 0xFFFFFF00, 0x18432	 },
-	{ 0xFFFF0000, 0x3D826	 },
-	{ 0xFFFF00FF, 0xC0104	 },
-	{ 0xFF00FFFF, 0x830C	 },
-	{ 0xFFFF7D00, 0x46008	 },
-	{ 0xFF0000FF, 0x218		 },
-	{ 0xFF007D00, 0x60CD0	 },
-	{ 0xFF7D007D, 0x10860	 },
-	{ 0xFF7D0000, 0x3040	 },
-	{ 0xFF007D7D, 0x1080	 },
-	{ 0xFF00FF00, 0x4200	 },
-	{ 0xFF00007D, 0x2180	 }
-};
-
-static NJS_VECTOR MetalHarbor_MapOffset = { -3000.0f, 0.0f, 16640.0f };
-static NJS_VECTOR MetalHarbor_MapUnit = { 33.14917f, 0.0f, 33.203125 };
 
 static NJS_TEXNAME LANDTX10_DC_TEXNAMES[] {
 	{ (void*)"pr128_12", 0, 0 },
@@ -84,20 +64,24 @@ static NJS_TEXLIST LANDTX10_DC_TEXLIST = { arrayptrandlength(LANDTX10_DC_TEXNAME
 static Trampoline* MetalHarbor_Init_t;
 static Trampoline* MetalHarbor_Free_t;
 
-static LandTableInfo* MetalHarborLandInfo;
+static StageBinary* MetalHarborStageFile;
 
 static void __cdecl MetalHarbor_Init_r()
 {
-	LoadLandTableFile(&MetalHarborLandInfo, "stg10_dc");
-	SetLandTableTexInfo(MetalHarborLandInfo, &LANDTX10_DC_TEXLIST, "LANDTX10_DC");
-	DataDLL_Set<LandTable>("objLandTable0010", MetalHarborLandInfo->getlandtable());
+	MetalHarborStageFile = new StageBinary("STG10.PRS", 0x8C500000);
+
+	auto land = MetalHarborStageFile->GetLandTable(0x897DC);
+	land->TextureList = &LANDTX10_DC_TEXLIST;
+
+	DataDLL_Set<LandTable>("objLandTable0010", land);
 
 	TRAMPOLINE(MetalHarbor_Init)();
 }
 
 static void __cdecl MetalHarbor_Free_r()
 {
-	FreeLandTableFile(&MetalHarborLandInfo);
+	delete MetalHarborStageFile;
+	MetalHarborStageFile = nullptr;
 
 	TRAMPOLINE(MetalHarbor_Free)();
 }
