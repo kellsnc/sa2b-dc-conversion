@@ -4,6 +4,7 @@
 #include "mod.h"
 
 #include "levels.h"
+#include "draw.h"
 
 std::string gModPath;
 const HelperFunctions* gHelperFunctions;
@@ -26,6 +27,7 @@ extern "C"
 		const auto config = new IniFile(std::string(path) + "\\config.ini");
 
 		Levels_Init(config);
+		InitDrawPatches();
 		
 		delete config;
 	}

@@ -195,7 +195,4 @@ void STG13_INIT()
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
 	
 	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
-
-	// Lamp post
-	WriteCall((void*)0x5E32B1, (void*)DrawChunkModelPtr);
 }
