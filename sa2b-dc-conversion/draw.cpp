@@ -91,6 +91,7 @@ void __cdecl DrawSA2BModel_Color_r(SA2B_Model* model, NJS_COLOR color)
 	// If this unknown variable is very large it's likely a pointer so chunk model
 	if (model->field_4 > 0x100000)
 	{
+		// Todo: apply the diffuse
 		DrawChunkModel((NJS_CNK_MODEL*)model);
 	}
 	else
@@ -119,6 +120,7 @@ void __cdecl DrawSA2BModel_Color_Clip_c(SA2B_Model* model, NJS_COLOR color)
 	// If this unknown variable is very large it's likely a pointer so chunk model
 	if (model->field_4 > 0x100000)
 	{
+		// Todo: apply the diffuse
 		DrawChunkModel_Clip((NJS_CNK_MODEL*)model);
 	}
 	else
