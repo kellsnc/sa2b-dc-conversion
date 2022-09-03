@@ -6,6 +6,8 @@
 #include "levels.h"
 #include "stg13_cityescape.h"
 
+DataPointer(NJS_OBJECT, object_city_lamp, 0x10A9150);
+
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
 	{ 0xFFFFFF00, 0x18432	 },
@@ -168,6 +170,8 @@ static void __cdecl CityEscape_Init_r()
 
 	DataDLL_Set<LandTable>("objLandTable0013", land);
 
+	object_city_lamp = *CityEscapeStageFile->GetModel(0x185EF4, StageBinary::ModelType_Chunk);
+	
 	TRAMPOLINE(CityEscape_Init)();
 }
 
@@ -191,4 +195,7 @@ void STG13_INIT()
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
 	
 	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
+
+	// Lamp post
+	WriteCall((void*)0x5E32B1, (void*)DrawChunkModelPtr);
 }
