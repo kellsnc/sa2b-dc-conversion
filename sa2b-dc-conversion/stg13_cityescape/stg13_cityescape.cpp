@@ -7,6 +7,10 @@
 #include "stg13_cityescape.h"
 
 DataPointer(NJS_OBJECT, object_city_lamp, 0x10A9150);
+DataPointer(SA2B_Model, model_city_fence_small, 0x10ABCF4);
+DataPointer(NJS_OBJECT, object_city_fence_small, 0x10AC210);
+DataPointer(SA2B_Model, model_city_fence_large, 0x10ABE2C);
+DataPointer(NJS_OBJECT, object_city_fence_large, 0x10ACF30);
 
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
@@ -171,7 +175,9 @@ static void __cdecl CityEscape_Init_r()
 	DataDLL_Set<LandTable>("objLandTable0013", land);
 
 	object_city_lamp = *CityEscapeStageFile->GetModel(0x185EF4, StageBinary::ModelType_Chunk);
-	
+	*object_city_fence_small.chunkmodel = *CityEscapeStageFile->GetModel(0x1887A0, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_fence_large.chunkmodel = *CityEscapeStageFile->GetModel(0x1892FC, StageBinary::ModelType_Chunk)->getchunkmodel();
+
 	TRAMPOLINE(CityEscape_Init)();
 }
 
