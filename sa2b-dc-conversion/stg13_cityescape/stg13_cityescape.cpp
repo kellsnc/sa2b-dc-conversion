@@ -32,6 +32,7 @@ DataPointer(NJS_OBJECT, object_city_sign_tall, 0x10A73F0);
 DataPointer(NJS_TEXLIST, texlist_city_sign_stop, 0x109F12C);
 DataPointer(NJS_TEXLIST, texlist_city_sign_small, 0x109F158);
 DataPointer(NJS_TEXLIST, texlist_city_sign_tall, 0x109F19C);
+DataPointer(NJS_OBJECT, object_city_bg, 0x10DC390);
 
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
@@ -248,6 +249,7 @@ static void __cdecl CityEscape_Init_r()
 	texlist_city_sign_small = texlist_city_sign_small_dc;
 	object_city_sign_tall = *CityEscapeStageFile->GetModel(0x18FECC, StageBinary::ModelType_Chunk);
 	texlist_city_sign_tall = texlist_city_sign_tall_dc;
+	object_city_bg = *CityEscapeStageFile->GetModel(0x4E33C, StageBinary::ModelType_Chunk);
 
 	TRAMPOLINE(CityEscape_Init)();
 }
@@ -277,4 +279,7 @@ void STG13_INIT()
 	WriteData((void**)0x10A7A24, (void*)0x5E3750);
 	WriteData((void**)0x10A7A50, (void*)0x5E3750);
 	WriteData((void**)0x10A7A7C, (void*)0x5E3750);
+
+	// SkyBox display
+	WriteCall((void*)0x5DD651, (void*)0x42E730);
 }
