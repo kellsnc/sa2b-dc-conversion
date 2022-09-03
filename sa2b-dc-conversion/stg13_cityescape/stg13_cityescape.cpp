@@ -54,8 +54,28 @@ DataPointer(NJS_OBJECT, object_city_ramp, 0x10934D0);
 DataPointer(NJS_OBJECT, object_city_hammer, 0x1094294);
 DataPointer(NJS_OBJECT, object_city_palm, 0x10AAEB8);
 DataPointer(NJS_OBJECT, object_city_sarrow, 0x1094908);
-DataPointer(NJS_OBJECT, object_city_greenb, 0x1094908);
+DataPointer(NJS_OBJECT, object_city_greenb, 0x10AA118);
 DataPointer(NJS_OBJECT, object_city_sblg, 0x10A98B0);
+DataPointer(NJS_OBJECT, object_city_taxi, 0x10AF9B0);
+DataPointer(NJS_OBJECT, object_city_trolley, 0x10C2D68);
+DataPointer(NJS_OBJECT, object_city_car_white, 0x10B1250);
+DataPointer(NJS_OBJECT, object_city_car_black, 0x10B2B24);
+DataPointer(NJS_OBJECT, object_city_car_blue, 0x10B4660);
+DataPointer(NJS_OBJECT, object_city_car_red, 0x10B5FA4);
+DataPointer(NJS_OBJECT, object_city_car_civic, 0x10B77B8);
+DataPointer(NJS_OBJECT, object_city_s_taxi, 0x10B9034);
+DataPointer(NJS_OBJECT, object_city_car_s_white, 0x10BA760);
+DataPointer(NJS_OBJECT, object_city_car_s_black, 0x10BBE7C);
+DataPointer(NJS_OBJECT, object_city_car_s_blue, 0x10BD7C0);
+DataPointer(NJS_OBJECT, object_city_car_s_red, 0x10BEF4C);
+DataPointer(NJS_OBJECT, object_city_car_s_civic, 0x10C05C8);
+DataPointer(NJS_OBJECT, object_city_a_taxi, 0x10C47B4);
+DataPointer(NJS_OBJECT, object_city_a_trolley, 0x10D7E40);
+DataPointer(NJS_OBJECT, object_city_car_a_white, 0x10C6120);
+DataPointer(NJS_OBJECT, object_city_car_a_black, 0x10C7A54);
+DataPointer(NJS_OBJECT, object_city_car_a_blue, 0x10C95A8);
+DataPointer(NJS_OBJECT, object_city_car_a_red, 0x10CAF58);
+DataPointer(NJS_OBJECT, object_city_car_a_civic, 0x10CC7C0);
 
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
@@ -293,9 +313,30 @@ static void __cdecl CityEscape_Init_r()
 	*object_city_hammer.chunkmodel = *CityEscapeStageFile->GetModel(0x17F558, StageBinary::ModelType_Chunk)->getchunkmodel();
 	*object_city_palm.chunkmodel = *CityEscapeStageFile->GetModel(0x18777C, StageBinary::ModelType_Chunk)->getchunkmodel();
 	object_city_sarrow = *CityEscapeStageFile->GetModel(0x191904, StageBinary::ModelType_Chunk);
-	object_city_greenb = *CityEscapeStageFile->GetModel(0x186BB8, StageBinary::ModelType_Chunk);
-	object_city_sblg = *CityEscapeStageFile->GetModel(0x186470, StageBinary::ModelType_Chunk);
+	*object_city_greenb.chunkmodel = *CityEscapeStageFile->GetModel(0x186BB8, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_sblg.chunkmodel = *CityEscapeStageFile->GetModel(0x186470, StageBinary::ModelType_Chunk)->getchunkmodel();
 	
+	object_city_taxi = *CityEscapeStageFile->GetModel(0x16BD78, StageBinary::ModelType_Chunk);
+	object_city_trolley = *CityEscapeStageFile->GetModel(0x17C04C, StageBinary::ModelType_Chunk);
+	object_city_car_white = *CityEscapeStageFile->GetModel(0x16D264, StageBinary::ModelType_Chunk);
+	object_city_car_black = *CityEscapeStageFile->GetModel(0x16E708, StageBinary::ModelType_Chunk);
+	object_city_car_blue = *CityEscapeStageFile->GetModel(0x16FDE0, StageBinary::ModelType_Chunk);
+	object_city_car_red = *CityEscapeStageFile->GetModel(0x1712DC, StageBinary::ModelType_Chunk);
+	object_city_car_civic = *CityEscapeStageFile->GetModel(0x172728, StageBinary::ModelType_Chunk);
+	object_city_s_taxi = *CityEscapeStageFile->GetModel(0x173C3C, StageBinary::ModelType_Chunk);
+	object_city_car_s_white = *CityEscapeStageFile->GetModel(0x176404, StageBinary::ModelType_Chunk);
+	object_city_car_s_black = *CityEscapeStageFile->GetModel(0x17503C, StageBinary::ModelType_Chunk);
+	object_city_car_s_blue = *CityEscapeStageFile->GetModel(0x1779FC, StageBinary::ModelType_Chunk);
+	object_city_car_s_red = *CityEscapeStageFile->GetModel(0x178E1C, StageBinary::ModelType_Chunk);
+	object_city_car_s_civic = *CityEscapeStageFile->GetModel(0x17A18C, StageBinary::ModelType_Chunk);
+	object_city_a_taxi = object_city_taxi;
+	object_city_a_trolley = object_city_trolley;
+	object_city_car_a_white = object_city_car_white;
+	object_city_car_a_black = object_city_car_black;
+	object_city_car_a_blue = object_city_car_blue;
+	object_city_car_a_red = object_city_car_red;
+	object_city_car_a_civic = object_city_car_civic;
+
 	TRAMPOLINE(CityEscape_Init)();
 }
 
