@@ -11,6 +11,27 @@ DataPointer(SA2B_Model, model_city_fence_small, 0x10ABCF4);
 DataPointer(NJS_OBJECT, object_city_fence_small, 0x10AC210);
 DataPointer(SA2B_Model, model_city_fence_large, 0x10ABE2C);
 DataPointer(NJS_OBJECT, object_city_fence_large, 0x10ACF30);
+DataPointer(NJS_OBJECT, object_city_trash_can, 0x109FC10);
+DataPointer(NJS_OBJECT, object_city_bush_small, 0x10A0560);
+DataPointer(NJS_OBJECT, object_city_bench_normal, 0x10A0EE8);
+DataPointer(NJS_OBJECT, object_city_bench_poster, 0x10A1870);
+DataPointer(NJS_OBJECT, object_city_lamp_post, 0x10A1F68);
+DataPointer(NJS_OBJECT, object_city_mailbox1, 0x10A2894);
+DataPointer(NJS_OBJECT, object_city_mailbox2, 0x10A33E0);
+DataPointer(NJS_OBJECT, object_city_palmtree1, 0x10A392C);
+DataPointer(NJS_OBJECT, object_city_palmtree2, 0x10A3F80);
+DataPointer(NJS_OBJECT, object_city_palmtree3, 0x10A44DC);
+DataPointer(NJS_OBJECT, object_city_sign_marking1, 0x10A54A0);
+DataPointer(NJS_OBJECT, object_city_sign_marking2, 0x10A565C);
+DataPointer(NJS_OBJECT, object_city_sign_marking3, 0x10A5818);
+DataPointer(NJS_OBJECT, object_city_sign_dual1, 0x10A5D44);
+DataPointer(NJS_OBJECT, object_city_sign_dual2, 0x10A6470);
+DataPointer(NJS_OBJECT, object_city_sign_stop, 0x10A699C);
+DataPointer(NJS_OBJECT, object_city_sign_small, 0x10A6DB8);
+DataPointer(NJS_OBJECT, object_city_sign_tall, 0x10A73F0);
+DataPointer(NJS_TEXLIST, texlist_city_sign_stop, 0x109F12C);
+DataPointer(NJS_TEXLIST, texlist_city_sign_small, 0x109F158);
+DataPointer(NJS_TEXLIST, texlist_city_sign_tall, 0x109F19C);
 
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
@@ -30,6 +51,35 @@ static ColorMap CityEscapeColorMap[] {
 
 static NJS_VECTOR CityEscape_MapOffset = { -3000.0f, 0.0f, 16640.0f };
 static NJS_VECTOR CityEscape_MapUnit = { 33.14917f, 0.0f, 33.203125 };
+
+static NJS_TEXNAME texname_city_sign_stop_dc[] {
+	{ (void*)"ce64_ita002", 0, 0 },
+	{ (void*)"ce64_ita002", 0, 0 },
+	{ (void*)"miu64_ce038", 0, 0 },
+	{ (void*)"scity_kage32", 0, 0 }
+};
+
+static NJS_TEXLIST texlist_city_sign_stop_dc = { arrayptrandlength(texname_city_sign_stop_dc) };
+
+static NJS_TEXNAME texname_city_sign_small_dc[]{
+	{ (void*)"ce64_ita002", 0, 0 },
+	{ (void*)"scity32_14", 0, 0 },
+	{ (void*)"miu64_ce039", 0, 0 },
+	{ (void*)"scity_kage32", 0, 0 }
+};
+
+static NJS_TEXLIST texlist_city_sign_small_dc = { arrayptrandlength(texname_city_sign_small_dc) };
+
+static NJS_TEXNAME texname_city_sign_tall_dc[]{
+	{ (void*)"ce64_ita002", 0, 0 },
+	{ (void*)"ce64_ita002", 0, 0 },
+	{ (void*)"miu64_ce040", 0, 0 },
+	{ (void*)"miu64_ce042", 0, 0 },
+	{ (void*)"miu64_ce043", 0, 0 },
+	{ (void*)"scity_kage32", 0, 0 }
+};
+
+static NJS_TEXLIST texlist_city_sign_tall_dc = { arrayptrandlength(texname_city_sign_tall_dc) };
 
 static NJS_TEXNAME LANDTX13_DC_TEXNAMES[] {
 	{ (void*)"miu128_ce005", 0, 0 },
@@ -177,6 +227,27 @@ static void __cdecl CityEscape_Init_r()
 	object_city_lamp = *CityEscapeStageFile->GetModel(0x185EF4, StageBinary::ModelType_Chunk);
 	*object_city_fence_small.chunkmodel = *CityEscapeStageFile->GetModel(0x1887A0, StageBinary::ModelType_Chunk)->getchunkmodel();
 	*object_city_fence_large.chunkmodel = *CityEscapeStageFile->GetModel(0x1892FC, StageBinary::ModelType_Chunk)->getchunkmodel();
+	object_city_trash_can = *CityEscapeStageFile->GetModel(0x18A4D4, StageBinary::ModelType_Chunk);
+	object_city_bush_small = *CityEscapeStageFile->GetModel(0x18ACF4, StageBinary::ModelType_Chunk);
+	object_city_bench_normal = *CityEscapeStageFile->GetModel(0x18B6E4, StageBinary::ModelType_Chunk);
+	object_city_bench_poster = *CityEscapeStageFile->GetModel(0x18B718, StageBinary::ModelType_Chunk);
+	object_city_lamp_post = *CityEscapeStageFile->GetModel(0x18BCE0, StageBinary::ModelType_Chunk);
+	object_city_mailbox1 = *CityEscapeStageFile->GetModel(0x18C4D4, StageBinary::ModelType_Chunk);
+	object_city_mailbox2 = *CityEscapeStageFile->GetModel(0x18CE70, StageBinary::ModelType_Chunk);
+	object_city_palmtree1 = *CityEscapeStageFile->GetModel(0x18D2E4, StageBinary::ModelType_Chunk);
+	object_city_palmtree2 = *CityEscapeStageFile->GetModel(0x18D82C, StageBinary::ModelType_Chunk);
+	object_city_palmtree3 = *CityEscapeStageFile->GetModel(0x18DCBC, StageBinary::ModelType_Chunk);
+	object_city_sign_marking1 = *CityEscapeStageFile->GetModel(0x18E828, StageBinary::ModelType_Chunk);
+	object_city_sign_marking2 = *CityEscapeStageFile->GetModel(0x18E960, StageBinary::ModelType_Chunk);
+	object_city_sign_marking3 = *CityEscapeStageFile->GetModel(0x18EA98, StageBinary::ModelType_Chunk);
+	object_city_sign_dual1 = *CityEscapeStageFile->GetModel(0x18EE78, StageBinary::ModelType_Chunk);
+	object_city_sign_dual2 = *CityEscapeStageFile->GetModel(0x18F404, StageBinary::ModelType_Chunk);
+	object_city_sign_stop = *CityEscapeStageFile->GetModel(0x18F798, StageBinary::ModelType_Chunk);
+	texlist_city_sign_stop = texlist_city_sign_stop_dc;
+	object_city_sign_small = *CityEscapeStageFile->GetModel(0x18FA64, StageBinary::ModelType_Chunk);
+	texlist_city_sign_small = texlist_city_sign_small_dc;
+	object_city_sign_tall = *CityEscapeStageFile->GetModel(0x18FECC, StageBinary::ModelType_Chunk);
+	texlist_city_sign_tall = texlist_city_sign_tall_dc;
 
 	TRAMPOLINE(CityEscape_Init)();
 }
@@ -201,4 +272,9 @@ void STG13_INIT()
 	WriteCall((void*)0x5DCDF7, LoadChunkLandManager);
 	
 	DataDLL_Set<NJS_TEXLIST>("texlist_landtx13", &LANDTX13_DC_TEXLIST);
+
+	// They blanked out most of the palm tree displays
+	WriteData((void**)0x10A7A24, (void*)0x5E3750);
+	WriteData((void**)0x10A7A50, (void*)0x5E3750);
+	WriteData((void**)0x10A7A7C, (void*)0x5E3750);
 }
