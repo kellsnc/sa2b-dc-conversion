@@ -33,6 +33,29 @@ DataPointer(NJS_TEXLIST, texlist_city_sign_stop, 0x109F12C);
 DataPointer(NJS_TEXLIST, texlist_city_sign_small, 0x109F158);
 DataPointer(NJS_TEXLIST, texlist_city_sign_tall, 0x109F19C);
 DataPointer(NJS_OBJECT, object_city_bg, 0x10DC390);
+DataPointer(NJS_OBJECT, object_city_squaretree1, 0x10DCF9C);
+DataPointer(NJS_OBJECT, object_city_squaretree1_leaves, 0x10DCDB8);
+DataPointer(NJS_OBJECT, object_city_squaretree2, 0x10DD780);
+DataPointer(NJS_OBJECT, object_city_squaretree2_leaves, 0x10DD574);
+DataPointer(NJS_OBJECT, object_city_squaretree3, 0x10DDFFC);
+DataPointer(NJS_OBJECT, object_city_squaretree3_leaves, 0x10DDD58);
+DataPointer(NJS_OBJECT, object_city_squaretree4, 0x10DE898);
+DataPointer(NJS_OBJECT, object_city_squaretree4_leaves, 0x10DE5D4);
+DataPointer(NJS_OBJECT, object_city_squaretree5, 0x10DF054);
+DataPointer(NJS_OBJECT, object_city_squaretree5_leaves, 0x10DEE70);
+DataPointer(NJS_OBJECT, object_city_trick_bar, 0x10AB980);
+DataPointer(NJS_OBJECT, object_city_slider, 0x10AB5A8);
+DataPointer(NJS_OBJECT, object_city_signboard, 0x10A86DC);
+DataPointer(NJS_OBJECT, object_city_treest, 0x10921B8);
+DataPointer(NJS_OBJECT, object_city_treestnb, 0x1092980);
+DataPointer(NJS_OBJECT, object_city_tree_leaves, 0x1092838);
+DataPointer(NJS_OBJECT, object_city_tire, 0x1093A70);
+DataPointer(NJS_OBJECT, object_city_ramp, 0x10934D0);
+DataPointer(NJS_OBJECT, object_city_hammer, 0x1094294);
+DataPointer(NJS_OBJECT, object_city_palm, 0x10AAEB8);
+DataPointer(NJS_OBJECT, object_city_sarrow, 0x1094908);
+DataPointer(NJS_OBJECT, object_city_greenb, 0x1094908);
+DataPointer(NJS_OBJECT, object_city_sblg, 0x10A98B0);
 
 static ColorMap CityEscapeColorMap[] {
 	{ 0xFF000000, 0xFFFFFFFF },
@@ -250,7 +273,29 @@ static void __cdecl CityEscape_Init_r()
 	object_city_sign_tall = *CityEscapeStageFile->GetModel(0x18FECC, StageBinary::ModelType_Chunk);
 	texlist_city_sign_tall = texlist_city_sign_tall_dc;
 	object_city_bg = *CityEscapeStageFile->GetModel(0x4E33C, StageBinary::ModelType_Chunk);
-
+	object_city_squaretree1 = *CityEscapeStageFile->GetModel(0x4ED0C, StageBinary::ModelType_Chunk);
+	object_city_squaretree1_leaves = *object_city_squaretree1.child;
+	object_city_squaretree2 = *CityEscapeStageFile->GetModel(0x4F2F4, StageBinary::ModelType_Chunk);
+	object_city_squaretree2_leaves = *object_city_squaretree2.child;
+	object_city_squaretree3 = *CityEscapeStageFile->GetModel(0x4F97C, StageBinary::ModelType_Chunk);
+	object_city_squaretree3_leaves = *object_city_squaretree3.child;
+	object_city_squaretree4 = *CityEscapeStageFile->GetModel(0x50004, StageBinary::ModelType_Chunk);
+	object_city_squaretree4_leaves = *object_city_squaretree4.child;
+	object_city_squaretree5 = *CityEscapeStageFile->GetModel(0x505C0, StageBinary::ModelType_Chunk);
+	object_city_squaretree5_leaves = *object_city_squaretree5.child;
+	*object_city_trick_bar.chunkmodel = *CityEscapeStageFile->GetModel(0x188064, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_slider.chunkmodel = *CityEscapeStageFile->GetModel(0x187D10, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_signboard.chunkmodel = *CityEscapeStageFile->GetModel(0x190FE4, StageBinary::ModelType_Chunk)->getchunkmodel();
+	object_city_treest = *CityEscapeStageFile->GetModel(0x185608, StageBinary::ModelType_Chunk);
+	object_city_treestnb = *CityEscapeStageFile->GetModel(0x1915FC, StageBinary::ModelType_Chunk);
+	*object_city_tire.chunkmodel = *CityEscapeStageFile->GetModel(0x1921C0, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_ramp.chunkmodel = *CityEscapeStageFile->GetModel(0x17ED40, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_hammer.chunkmodel = *CityEscapeStageFile->GetModel(0x17F558, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_city_palm.chunkmodel = *CityEscapeStageFile->GetModel(0x18777C, StageBinary::ModelType_Chunk)->getchunkmodel();
+	object_city_sarrow = *CityEscapeStageFile->GetModel(0x191904, StageBinary::ModelType_Chunk);
+	object_city_greenb = *CityEscapeStageFile->GetModel(0x186BB8, StageBinary::ModelType_Chunk);
+	object_city_sblg = *CityEscapeStageFile->GetModel(0x186470, StageBinary::ModelType_Chunk);
+	
 	TRAMPOLINE(CityEscape_Init)();
 }
 
