@@ -73,3 +73,14 @@ static inline int DecompressPRS(void* prs, void* output)
 	}
 	return result;
 }
+
+DataPointer(NJS_OBJECT, object_bane_banebottom_banebottom, 0xB55540);
+DataPointer(NJS_OBJECT, object_bane_banebottom_spring, 0xB55038);
+DataPointer(NJS_OBJECT, object_bane_banebottom_banehead, 0xB54CC0);
+DataPointer(NJS_OBJECT, object_bane_type_b_type_b_type_b, 0xB56184);
+DataPointer(NJS_OBJECT, object_bane_type_b_type_b_spring, 0xB55D68);
+DataPointer(NJS_OBJECT, object_bane_type_b_type_b_banehead, 0xB559F0);
+DataPointer(NJS_OBJECT, object_obj_ring_ring_far, 0xB57580);
+DataPointer(NJS_OBJECT, object_obj_ring_ring_near, 0xB57A90);
+DataPointer(NJS_OBJECT, object_obj_ring_ring, 0xB58020);
+DataPointer(NJS_OBJECT, object_obj_box_wood, 0xB47E78);

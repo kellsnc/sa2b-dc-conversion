@@ -337,6 +337,19 @@ static void __cdecl CityEscape_Init_r()
 	object_city_car_a_red = object_city_car_red;
 	object_city_car_a_civic = object_city_car_civic;
 
+	auto object_bane = CityEscapeStageFile->GetModel(0x19CF80, StageBinary::ModelType_Chunk);
+	*object_bane_banebottom_banebottom.chunkmodel = *object_bane->getchunkmodel();
+	object_bane_banebottom_spring = *object_bane->child;
+	object_bane_banebottom_banehead.chunkmodel = object_bane->child->child->getchunkmodel();
+	object_bane = CityEscapeStageFile->GetModel(0x19D964, StageBinary::ModelType_Chunk);
+	*object_bane_type_b_type_b_type_b.chunkmodel = *object_bane->getchunkmodel();
+	object_bane_type_b_type_b_spring = *object_bane->child;
+	object_bane_type_b_type_b_banehead = *object_bane->child->child;
+	*object_obj_ring_ring.chunkmodel = *CityEscapeStageFile->GetModel(0x196088, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_obj_ring_ring_near.chunkmodel = *CityEscapeStageFile->GetModel(0x195B78, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_obj_ring_ring_far.chunkmodel = *CityEscapeStageFile->GetModel(0x1956EC, StageBinary::ModelType_Chunk)->getchunkmodel();
+	*object_obj_box_wood.chunkmodel = *CityEscapeStageFile->GetModel(0x1B0FF4, StageBinary::ModelType_Chunk)->getchunkmodel();
+
 	TRAMPOLINE(CityEscape_Init)();
 }
 
