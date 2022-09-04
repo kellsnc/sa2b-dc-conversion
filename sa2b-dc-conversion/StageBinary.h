@@ -23,6 +23,7 @@ public:
 private:
 	std::unordered_set<void*> fixedpointers;
 	intptr_t filebase = 0x8C500000;
+	size_t filesize;
 	void* filedata = nullptr;
 
 	template<typename T>

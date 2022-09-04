@@ -3,6 +3,10 @@
 #include "ModelInfo.h"
 #include "LandTableInfo.h"
 #include "StageBinary.h"
+#include "common.h"
+
+static uint8_t PRSBuffer[1500000];
+static uint8_t DecompBuffer[3000000];
 
 StageBinary::StageBinary(std::string& filename, intptr_t base)
 {
@@ -18,7 +22,7 @@ StageBinary::~StageBinary()
 {
 	if (filedata)
 	{
-		FreeMemory(filedata, __FILE__, __LINE__);
+		delete filedata;
 	}
 }
 
@@ -207,6 +211,13 @@ LandTable* StageBinary::GetLandTable(intptr_t offset)
 
 void StageBinary::Init(const char* filename, intptr_t base)
 {
-	filedata = LoadPRSFile(filename);
-	filebase = -base + *(intptr_t*)&filedata;
+	auto file = OpenFile_(0, filename, PRSBuffer);
+
+	if (file >= 0)
+	{
+		filesize = DecompressPRS(PRSBuffer, DecompBuffer);
+		filedata = new uint8_t[filesize];
+		memcpy_s(filedata, filesize, DecompBuffer, filesize);
+		filebase = -base + *(intptr_t*)&filedata;
+	}
 }

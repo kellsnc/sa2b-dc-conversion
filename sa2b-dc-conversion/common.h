@@ -30,3 +30,46 @@ static inline void FreeMemory(void* pMemory, const char* file, int line)
 		call FreeMemoryPtr
 	}
 }
+
+static const void* const GetFileSize_Ptr = (void*)0x428CD0;
+static inline void GetFileSize_(const char* filename, int* output)
+{
+	__asm
+	{
+		push[output]
+		mov ecx, [filename]
+		call GetFileSize_Ptr
+		add esp, 4
+	}
+}
+
+static const void* const OpenFile_Ptr = (void*)0x4532C0;
+static inline int OpenFile_(void* idk, const char* filename, void* output)
+{
+	int result;
+	__asm
+	{
+		push[output]
+		mov esi, [filename]
+		mov edi, [idk]
+		call OpenFile_Ptr
+		add esp, 4
+		mov result, eax
+	}
+	return result;
+}
+
+static const void* const DecompressPRSPtr = (void*)0x48F980;
+static inline int DecompressPRS(void* prs, void* output)
+{
+	int result;
+	__asm
+	{
+		push[output]
+		mov ecx, [prs]
+		call DecompressPRSPtr
+		mov result, eax
+		add esp, 4
+	}
+	return result;
+}
